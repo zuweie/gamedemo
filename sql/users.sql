@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `uuid` VARCHAR(120) NOT NULL DEFAULT '' COMMENT '设备产生的ID',
+    `name` VARCHAR(120) NOT NULL DEFAULT '' COMMENT '用户名字',
+    `login` VARCHAR(120) NOT NULL DEFAULT '' COMMENT '用户登录名字',
+    `password` VARCHAR(200) NOT NULL DEFAULT '' COMMENT '登录密码',
+    `access_token` VARCHAR(40) DEFAULT '' COMMENT 'access_token',
+    `login_time` INT(10) UNSIGNED DEFAULT 0,
+    `created_at` INT(10) UNSIGNED DEFAULT 0,
+    `updated_at` INT(10) UNSIGNED DEFAULT 0,
+    UNIQUE(`uuid`),
+    PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户表';

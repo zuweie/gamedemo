@@ -1,0 +1,6 @@
+{
+    "host": "localhost",
+    "user": "root",
+    "database": "gameserver",
+    "connectionLimit": 20
+}

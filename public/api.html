@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <title>api test</title>
+    <style>
+        body{padding:10px;}
+    </style>
+    <body>
+        <div>
+            <p>new user</p>
+            <form action="/newuser" method="POST">
+                <input name="uuid" type="text" placeholder="uuid">
+                <br>
+                <input name="name" type="name" placeholder="name">
+                <br>
+                <input type="submit" value="post">
+            </form>
+        </div>
+
+        <div>
+            <p>login</p>
+            <form action="/login" method="POST">
+                <input name="name" type="text" placeholder="name">
+                <br>
+                <input type="submit" value="post">
+            </form>
+        </div>
+    </body>
+</html>
