@@ -20,7 +20,7 @@ gameHub.init(http);
 
 // init game
 //gameManager.init_gamehub(http);
-
-http.listen(3000, ()=>{console.log('game server listeneing on port 3000')});
+let port = process.argv[2] || 3000;
+http.listen(port, ()=>{console.log('game server listeneing on port '+port)});
 
 
