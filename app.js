@@ -7,7 +7,7 @@ const gameHub = require(__dirname+'/lib/gamehub');
 
 
 // init webserver
-app.all('*', function(res, req){
+app.all('*', function(req, res, next){
     res.header('Access-Control-Allow-Origin:*');
     next();
 });
