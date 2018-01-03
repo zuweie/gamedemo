@@ -7,6 +7,10 @@ const gameHub = require(__dirname+'/lib/gamehub');
 
 
 // init webserver
+app.all('*', function(res, req){
+    res.header('Access-Control-Allow-Origin:*');
+    next();
+});
 app.use(bodyParser.urlencoded({extended: false}));
 app.use("/", routing);
 app.use('/regist', function (req,res) {
