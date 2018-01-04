@@ -35,7 +35,7 @@
                 //alert('click j');
                 var name = $('input#j').val();
                 var token = $('input#token').val();
-                var gamehub_url = location.protocol+'//'+location.hostname+'/';
+                var gamehub_url = location.protocol+'//'+location.hostname+':'+location.port+'/';
                 //alert(io_host);
 
                 if (token == '' ) {
@@ -55,6 +55,9 @@
                             });
                             socket.on('speak', function(msg){
                                 $('#messages').append($('<li class="speak">').text(msg));
+                            })
+                            socket.on('gamestartd', function(msg){
+                                $('#messages').append($('<li class="gamestartd">').text(msg));
                             })
                             socket.on('disconnect', function(err){
                                 $('input#token').val('');
