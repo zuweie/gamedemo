@@ -26,16 +26,19 @@
         <input id="p" placeholder="type your action"/>
         <button type="button" id="btn-p">Send</button>
         <input type="hidden" id="token">
+        <button type="button" id="btn-close">close connection</button>
+        <button type="button" id="btn-reconnect">reconnection</button>
     </form>
   </body>
   <script>
         $(function(){
             var socket;
+            var gamehub_url = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port : '') +'/';
+
             $('#btn-j').click(function(){
                 //alert('click j');
                 var name = $('input#j').val();
                 var token = $('input#token').val();
-                var gamehub_url = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port : '') +'/';
                 //alert(io_host);
 
                 if (token == '' ) {
@@ -62,6 +65,7 @@
                             socket.on('disconnect', function(err){
                                 $('input#token').val('');
                                 alert('与服务器断开链接');
+                                socket = null;
                             });
                             //alert(gamehub_url);
                         }else{
@@ -81,6 +85,31 @@
                     $('input#p').val('');
                 }else{
                     alert('还未连上服务器呢？')
+                }
+            });
+            $('#btn-close').click(function(){
+                socket.close();
+            });
+            $('#btn-reconnect').click(function(){
+                var curr_token = $('input#token').val();
+                if (curr_token && !socket) {
+                    socket = io(gamehub_url, {path:'/gamehub'});
+                    socket.on('action', function(msg){
+                        $('#messages').append($('<li class="action">').text(msg));
+                    });
+                    socket.on('speak', function(msg){
+                        $('#messages').append($('<li class="speak">').text(msg));
+                    })
+                    socket.on('gamestartd', function(msg){
+                        $('#messages').append($('<li class="gamestartd">').text(msg));
+                    })
+                    socket.on('disconnect', function(err){
+                        $('input#token').val('');
+                        socket = null;
+                        alert('与服务器断开链接');
+                    });
+                }else{
+                    alert('请先登录 ok？');
                 }
             });
         });
