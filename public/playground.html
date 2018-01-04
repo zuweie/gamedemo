@@ -35,7 +35,7 @@
                 //alert('click j');
                 var name = $('input#j').val();
                 var token = $('input#token').val();
-                var gamehub_url = location.protocol+'//'+location.hostname+(localhost.prot ? ':'+location.port : '') +'/';
+                var gamehub_url = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port : '') +'/';
                 //alert(io_host);
 
                 if (token == '' ) {
